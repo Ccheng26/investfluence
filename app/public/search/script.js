@@ -93,6 +93,7 @@ $(document).ready(function() {
       }));
     },
     focus: function(event, ui) {
+      console.log($('#tags').val(ui.item.value))
       $('#tags').val(ui.item.value);
       return false;
     },
@@ -100,6 +101,7 @@ $(document).ready(function() {
     select: function(event, ui) {
       // place the person.given_label value into the textfield called 'select_origin'...
       $('#tags').val(ui.item.label);
+      console.log($('#tags').val(ui.item.label))
       // and place the person.id into the hidden textfield called 'link_origin_id'.
       $('#link_origin_id').val(ui.item.id);
       return false;

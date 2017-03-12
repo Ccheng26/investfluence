@@ -1,3 +1,5 @@
+require 'moment'
+moment().format()
 $(document).ready(function() {
   var idName ='58c4bb4170900285867fcdd3'
   var tickerName='TRIGX'
@@ -29,8 +31,12 @@ $(document).ready(function() {
 
     // manipulate data to display info
   var handleResponse = function(data) {
-    $('#ticker').text(data.funds[0].assets[0].name+ '(' + data.funds[0].assets[0].ticker + ')')
-    $('#share').text(data.funds[0].assets[0].name+ ': '+ data.funds[0].assets[0].shares)
+    $('#expire').text('Campaign Expires: ' + data.deadline )
+    var price = data.funds[0].assets[0].shares * data.funds[0].assets[0].stock_price
+    function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    $('#blurb').text(`Your Mutual Funds (${data.funds[0]._id}) own a total of ${data.funds[0].assets[0].shares} in ${data.funds[0].assets[0].name} which is currently worth $ ${numberWithCommas(price)}`)
 
     // $('#des').html(" ")
     //on enter display information
