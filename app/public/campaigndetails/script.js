@@ -1,6 +1,5 @@
-require 'moment'
-moment().format()
 $(document).ready(function() {
+
   var idName ='58c4bb4170900285867fcdd3'
   var tickerName='TRIGX'
 
@@ -11,7 +10,7 @@ $(document).ready(function() {
       method: 'GET',
       dataType: 'json',
       success: function(data) {
-        console.log("wtf is this shit")
+        console.log("success")
         handleResponse(data);
       },
       error: function(er) {
@@ -21,7 +20,7 @@ $(document).ready(function() {
         method: 'GET',
         dataType: 'json',
         success: function(data) {
-          console.log("wtf is this shit")
+          console.log("other route")
           handleResponse(data);
         }
     })
@@ -31,7 +30,8 @@ $(document).ready(function() {
 
     // manipulate data to display info
   var handleResponse = function(data) {
-    $('#expire').text('Campaign Expires: ' + data.deadline )
+    moment(data.deadline)
+    $('#expire').text('Campaign Expires: ' + moment(data.deadline).format('MMMM Do YYYY'))
     var price = data.funds[0].assets[0].shares * data.funds[0].assets[0].stock_price
     function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
